@@ -6,4 +6,12 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'CSC 317 App', name:"Arjun S. Gill" });
 });
 
+router.get('/login', function(req, res, next) {
+  res.render('login');
+});
+
+router.get('/registration', function(req, res, next) {
+  res.render('registration');
+});
+
 module.exports = router;
