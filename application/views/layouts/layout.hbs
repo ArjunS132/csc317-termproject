@@ -3,9 +3,13 @@
   <head>
     <title>{{title}}</title>
     <link rel="icon" href="/public/favicon.ico" sizes="70x70" type="image/ico">
-    <link rel='stylesheet' href='/public/stylesheets/style.css' />
+    <link rel='stylesheet' href='/public/css/style.css' />
+    <script defer type="text/javascript" src="../../public/js/homeJs.js"></script>
   </head>
   <body>
+    {{> banner}}
+    {{> nav}}
     {{{body}}}
+    {{> footer}}
   </body>
 </html>
