@@ -32,7 +32,7 @@ function passwordHasNumber(password) {
 }
 
 function passwordHasSpecialCharacter(password) {
-    const regex = /(\/\*\-\+\!@#\$\^\&)\./;
+    const regex = /[(\/\*\-\+\!@#\$\^\&)\.]/;
     return regex.test(password);
 }
 
@@ -83,12 +83,11 @@ function displayErrors() {
     {
         errors.push("The password needs one of the following special characters ( / * - + ! @ # $ ^ & * ).\n");
     }
-    alert(arrayToString(errors));
+    if(errors) alert(arrayToString(errors));
     return errors.length != 0;
 }
 
 function submitForm(event) {
-    console.log('went into method');
     if( displayErrors() ) {
         event.preventDefault();
     }

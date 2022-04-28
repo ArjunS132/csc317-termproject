@@ -2,10 +2,11 @@
     <section>
         <h1>Registration Form</h1>
     </section>
-    <form class="grid-container" onsubmit="submitForm(event)">
-        <input id="username" type="text" placeholder="Username">
-        <input id="email" type="email" placeholder="email">
-        <input id="password" type="password" placeholder="Password">
+    <form class="grid-container" onsubmit="submitForm(event)" method="POST" action="/users/register"
+    enctype="application/x-www-form-urlencoded">
+        <input id="username" type="text" placeholder="Username" name="username" required>
+        <input id="email" type="email" placeholder="email" name="email" required>
+        <input id="password" type="password" placeholder="Password" name="password" required>
         <input id="re-enter-password" type="password" placeholder="Re-enter password">
         <div >
             <input id="confirm-age-checkbox" type="checkbox" required>
