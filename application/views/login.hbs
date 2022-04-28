@@ -1,8 +1,9 @@
 <div class="grey-box center">
     <h1>Login Page</h1>
-    <form class="grid-container">
-        <input class="clear-box" id="username" type="text" placeholder="Username" >
-        <input class= "clear-box" id="password" type="password" placeholder="Password" >
+    <form class="grid-container" method="POST" action="/users/login"
+        enctype="application/x-www-form-urlencoded">
+        <input class="clear-box" id="username" type="text" placeholder="Username" name="username" required>
+        <input class= "clear-box" id="password" type="password" placeholder="Password" name="password" required>
         <button class="looksLikeButton" id="login" type="submit">Login</button>
         <a class="looksLikeButton" href="/registration" > Register </a>
     </form>
