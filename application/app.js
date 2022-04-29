@@ -7,6 +7,9 @@ const logger = require("morgan");
 const handlebars = require("express-handlebars");
 const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
+var sessions = require('express-session');
+const session = require("express-session");
+var mysqlSession = require('express-mysql-session')(sessions);
 
 const app = express();
 
@@ -20,6 +23,35 @@ app.engine(
     helpers: {}, //adding new helpers to handlebars for extra functionality
   })
 );
+
+// mysqlSession setup
+var mysqlSessionStore = new mysqlSession(
+    {
+        /*
+         * using default options
+         */
+    },
+    require('./config/database')
+);
+app.use(sessions({
+    key: "csid",
+    secret: "this is a secret from csc317",
+    store: mysqlSessionStore,
+    resave: false,
+    saveUninitialized: false
+}));
+
+app.use((req, res, next)=> {
+    console.log(req.url);
+    next();
+})
+
+app.use((req, res, next) => {
+    if(req.session.username){
+        res.locals.logged = true;
+    }
+    next();
+})
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -39,13 +71,13 @@ app.use("/users", usersRouter); // route middleware from ./routes/users.js
 
 
 /**
- * Catch all route, if we get to here then the 
+ * Catch all route, if we get to here then the
  * resource requested could not be found.
  */
 app.use((req,res,next) => {
   next(createError(404, `The route ${req.method} : ${req.url} does not exist.`));
 })
-  
+
 
 /**
  * Error Handler, used to render the error html file

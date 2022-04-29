@@ -81,11 +81,13 @@ router.post('/login', (req, res, next) => {
     /*
      * do server side validation?
      */
-    let baseSQL="SELECT username, password FROM users WHERE username=?"
+    let baseSQL="SELECT id,username, password FROM users WHERE username=?"
+    let userId;
     db.execute(baseSQL,[ username ])
     .then(([results, fields]) => {
         if(results && results.length == 1) {
             let hashedPassword = results[0].password;
+            userId = results[0].id;
             return bcrypt.compare(password, hashedPassword);
         } else {
             throw new UserError("Invalid username and/or password!", "/login", 200);
@@ -94,8 +96,10 @@ router.post('/login', (req, res, next) => {
     .then((matchingPasswords) => {
         if(matchingPasswords) {
             successPrint(`User ${username} is logged in`)
+            req.session.username = username;
+            req.session.userId = userId;
             res.locals.logged = true;
-            res.render('home', {logged:true});
+            res.redirect('home');
         } else {
             throw new UserError("invalid username and/or password!", "/login", 200);
         }
@@ -110,9 +114,20 @@ router.post('/login', (req, res, next) => {
             next(err);
         }
     })
+});
+
+// logout from the site
+router.post('/logout', (req, res, next) => {
+    req.session.destroy((err) => {
+        if(err) {
+            errorPrint('Session could not be destroyed');
+            next(err);
+        } else {
+            successPrint('Session was destroyed');
+            res.clearCookie('csid');
+            res.json({status:"OK", message:"user is logged out"});
+        }
+    })
 })
 
 module.exports = router;
-
-
-
