@@ -8,8 +8,8 @@ const handlebars = require("express-handlebars");
 const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
 var sessions = require('express-session');
-const session = require("express-session");
 var mysqlSession = require('express-mysql-session')(sessions);
+var flash = require('express-flash');
 
 const app = express();
 
@@ -41,17 +41,21 @@ app.use(sessions({
     saveUninitialized: false
 }));
 
+// setting up session to work with login button
 app.use((req, res, next)=> {
     console.log(req.url);
     next();
 })
-
 app.use((req, res, next) => {
     if(req.session.username){
+        console.log(req.session);
         res.locals.logged = true;
     }
     next();
 })
+
+// adding in flash
+app.use(flash());
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
