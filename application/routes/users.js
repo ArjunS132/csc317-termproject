@@ -53,7 +53,7 @@ router.post('/register', (req, res, next) => {
     .then(([results, fields]) => {
         if(results && results.affectedRows){
             successPrint("User.js -> User was created!!");
-            req.flash('success', 'User account has been made!');
+            req.flash('success', 'User account has been made');
             res.redirect('/login');
         } else{
             throw new UserError(
@@ -102,7 +102,7 @@ router.post('/login', (req, res, next) => {
             req.session.username = username;
             req.session.userId = userId;
             res.locals.logged = true;
-            res.redirect('home');
+            res.redirect('/home');
         } else {
             throw new UserError("invalid username and/or password!", "/login", 200);
         }

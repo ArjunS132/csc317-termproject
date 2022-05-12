@@ -9,6 +9,9 @@
   </head>
   <body>
     {{> banner}}
+    {{#if (emptyObject messages)}}
+    {{> flashmessage}}
+    {{/if}}
     {{> nav}}
     {{{body}}}
     {{> footer}}

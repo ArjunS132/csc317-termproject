@@ -83,7 +83,7 @@ function displayErrors() {
     {
         errors.push("The password needs one of the following special characters ( / * - + ! @ # $ ^ & * ).\n");
     }
-    if(errors) alert(arrayToString(errors));
+    if(errors.length !=0) alert(arrayToString(errors));
     return errors.length != 0;
 }
 
