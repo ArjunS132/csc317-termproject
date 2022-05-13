@@ -2,11 +2,11 @@
     <section>
         <h1>Post Image</h1>
     </section>
-    <form class="grid-container" method="POST" enctype="multipart/form-data">
-        <input id="title-field" type="text" placeholder="Title">
-        <input id="description-field" type="text" placeholder="Text (optional)">
+    <form class="grid-container" method="POST" enctype="multipart/form-data" action='/posts/createPost'>
+        <input id="title-field" type="text" placeholder="Title" name="title">
+        <input id="description-field" type="text" placeholder="Text (optional)" name="description">
         <label id="image" class="white">enter your image or images</label>
-        <input id="image-field" type="file">
+        <input id="image-field" type="file" name="uploadImage" required>
         <div>
             <input id="accept-policy" type="checkbox">
             <a id="the-policy" href="the-policy" class="blue">I accept the acceptable use policy</a>
