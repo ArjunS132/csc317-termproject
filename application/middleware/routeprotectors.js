@@ -1,8 +1,6 @@
 const { errorPrint, successPrint } = require('../helpers/debug/debugprinters');
 const routeProtectors = {}
 
-
-
 routeProtectors.userIsLoggedIn = function(req, res, next) {
     if(req.session.username) {
         successPrint('User is logged in');

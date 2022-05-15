@@ -1,2 +1,6 @@
 <h1>{{title}}</h1>
-<p>Hello {{ name }},Welcome to {{title}}</p>
+<div id='viewpost-container'>
+    {{#each results}}
+        {{> card this}}
+    {{/each}}
+</div>

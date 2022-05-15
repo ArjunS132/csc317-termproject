@@ -1,2 +1,5 @@
-<h1 id='numItems'></h1>
-<div id='viewpost-container'></div>
+<div id='viewpost-container'>
+    {{#each results}}
+        {{> card this}}
+    {{/each}}
+</div>
