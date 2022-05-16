@@ -29,7 +29,7 @@ footer {
     color: white;
 }
 
-#viewpost-container {
+#home-container {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(2, 1fr);
@@ -62,6 +62,66 @@ footer {
     top: 25%;
 }
 
+#viewpost-container {
+    display: grid;
+    grid-template-areas: "image post"
+                         "image comments";
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    margin-right: 100px;
+    margin-left: 100px;
+    margin-bottom: 50px;
+    margin-top: 5px;
+    gap: 5px;
+    background: #D3D3D3;
+    background-clip: content-box;
+}
+
+#viewpost-container > img {
+    grid-area: image;
+    height: 75vh;
+    width: 100vw;
+}
+
+#viewpost-container > #post-details {
+    grid-area: post;
+    display: grid;
+    grid-template-areas: "header header"
+                         "author date"
+                         "description description";
+    grid-template-rows: fit-content(10%) fit-content(10%) 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 5px;
+}
+
+#post-details > header {
+    grid-area: header;
+    text-align: center;
+    background-color: #1e2833;
+}
+
+#post-details > #author {
+    grid-area: author;
+    text-align: center;
+}
+
+#post-details > #time {
+    grid-area: date;
+    text-align: center;
+}
+#post-details > #description {
+    grid-area: description;
+    text-align: center;
+}
+
+#viewpost-container > #comments {
+    grid-area: comments;
+    display: flexbox;
+    flex-direction: column;
+}
+#comments > header {
+    background-color: #1e2833;
+}
 .center {
     position: absolute;
     top: 50%;
@@ -198,5 +258,10 @@ footer {
     color: rgb(70,136,71);
     border: 1px solid rgb(214,233,198);
     background-color: rgb(223,240,216);
+}
+
+.rounded-border {
+    border: 2px solid black;
+    border-radius: 5px;
 }
 
