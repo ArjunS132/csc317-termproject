@@ -38,7 +38,7 @@ router.post('/createPost', uploader.single("uploadImage"), (req, res, next) => {
     .resize(200)
     .toFile(destinationOfThumbnail)
     .then( () => {
-        let baseSQL = 'INSERT INTO posts (title, description, photopath, thumbnail, createdAt, fk_userId) VALUE (?, ?, ?, ?, now(), ?);';
+        let baseSQL = 'INSERT INTO posts (title, description, photopath, thumbnailpath, createdAt, fk_userId) VALUE (?, ?, ?, ?, now(), ?);';
         return db.execute(baseSQL,[title, desc, fileUploaded, destinationOfThumbnail, fk_userId]);
     })
     .then( ([results, fields]) => {
