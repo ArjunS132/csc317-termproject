@@ -56,10 +56,21 @@ footer {
     flex-grow: 4;
 }
 
+#search-button {
+    background-color: #24a0ed;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    padding-left: 25px;
+    padding-right: 25px;
+    color: white;
+}
+
 #flash-message {
     position: fixed;
-    display: inline-block;
-    top: 25%;
+    left: 50%;
+    top: 5%;
+    transform: translate(-50%,0);
+    z-index: 9999;
 }
 
 #viewpost-container {
@@ -258,6 +269,12 @@ footer {
     color: rgb(70,136,71);
     border: 1px solid rgb(214,233,198);
     background-color: rgb(223,240,216);
+}
+
+.alert-info {
+    color: rgb(58,135,173);
+    border: 1px solid rgb(188,232,241);
+    background-color: rgb(217,237,247);
 }
 
 .rounded-border {
