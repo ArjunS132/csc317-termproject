@@ -37,6 +37,7 @@ footer {
     grid-auto-columns: 1fr;
     padding-right: 100px;
     padding-left: 100px;
+    padding-bottom: 41px;
     gap: .25em;
 }
 

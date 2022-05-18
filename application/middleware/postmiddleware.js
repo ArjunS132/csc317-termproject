@@ -1,16 +1,16 @@
-var db = require("../config/database");
+var PostModel = require('../models/Posts');
 const postMiddleware = {}
 
-postMiddleware.getRecentPosts = function(req, res, next) {
-    let baseSQL = 'SELECT id, title, description, thumbnailpath, createdAt FROM posts ORDER BY createdAt DESC LIMIT 8';
-    db.execute(baseSQL, [])
-    .then(([results, fields]) => {
+postMiddleware.getRecentPosts = async function(req, res, next) {
+    try {
+        let results = await PostModel.getRecentPosts(8);
         res.locals.results = results;
-        if(results && results.length == 0) {
+        if(results.length == 0) {
             req.flash('error', 'There are no posts created yet');
         }
-        next();
-    })
-    .catch((err) => next(err));
+        next()
+    } catch(err) {
+        next(err);
+    }
 }
 module.exports = postMiddleware;
