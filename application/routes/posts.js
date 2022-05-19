@@ -1,6 +1,5 @@
 var express = require('express');
 var router = express.Router();
-var db = require('../config/database');
 const { errorPrint, successPrint } = require('../helpers/debug/debugprinters');
 var sharp = require('sharp');
 var multer = require('multer');

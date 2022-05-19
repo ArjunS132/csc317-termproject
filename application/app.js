@@ -8,6 +8,7 @@ const handlebars = require("express-handlebars");
 const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
 const postsRouter = require("./routes/posts");
+const commentRouter = require("./routes/comments");
 var sessions = require('express-session');
 var mysqlSession = require('express-mysql-session')(sessions);
 var flash = require('express-flash');
@@ -78,6 +79,7 @@ app.use("/public", express.static(path.join(__dirname, "public")));
 app.use("/", indexRouter); // route middleware from ./routes/index.js
 app.use("/users", usersRouter); // route middleware from ./routes/users.js
 app.use("/posts", postsRouter); // route middleware from ./routes/posts.js
+app.use("/comments", commentRouter); // route middleware from ./routes/posts.js
 
 
 /**
