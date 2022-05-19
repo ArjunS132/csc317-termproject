@@ -78,9 +78,10 @@ footer {
 #viewpost-container {
     display: grid;
     grid-template-areas: "image post"
+                         "image comments"
                          "image comments";
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
     margin-right: 100px;
     margin-left: 100px;
     margin-bottom: 50px;
@@ -129,23 +130,25 @@ footer {
 
 #viewpost-container > #comments-container {
     grid-area: comments;
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: fit-content(10%) 290px fit-content(10%);
     flex-direction: column;
 }
 #comments-container > header {
-    flex-grow: 1;
     background-color: #1e2833;
 }
-#comments-container > #comments-display {
-    flex-grow: 20;
+#comments-container > #messages{
     margin: 3px;
     overflow-y: auto;
     display: flex;
     flex-flow: column-reverse nowrap;
+    gap: 1px;
+    padding: 1px;
     scroll-behavior: smooth;
 }
 
-#comments-display > div[id^=message-] {
+#messages > div[id^=message-] {
     display: grid;
     grid-template-rows: .3fr, 1fr;
     grid-template-columns: 1fr, 1fr;
@@ -156,6 +159,8 @@ footer {
     color: black;
     border: .0625rem solid grey;
     border-radius: .25rem;
+    max-height: 60px;
+    min-height: 60px;
     grid-template-areas: "author createdAt"
                          "comment comment";
 }
@@ -165,8 +170,6 @@ div[id^=message-] > .comment-text {
     justify-self: start;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-height: 60px;
-    min-height: 60px;
 }
 
 div[id^=message-] > .author-text {
