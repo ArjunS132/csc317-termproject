@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var isLoggedIn = require('../middleware/routeprotectors').userIsLoggedIn;
-const {getRecentPosts, getPostById} = require('../middleware/postmiddleware');
+const {getRecentPosts, getPostById, getCommentsByPostId} = require('../middleware/postmiddleware');
 var db = require('../config/database');
 
 /* GET home page. */
@@ -35,7 +35,7 @@ router.get('/viewpost', function(req, res, next) {
   res.render('viewpost');
 });
 
-router.get('/post/:id(\\d+)', getPostById, (req,res,next) => {
+router.get('/post/:id(\\d+)', getPostById, getCommentsByPostId, (req,res,next) => {
     res.render('viewpost', { title: `Post ${req.params.id}`});
 });
 

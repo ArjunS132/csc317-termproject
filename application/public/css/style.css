@@ -126,17 +126,32 @@ footer {
     text-align: center;
 }
 
-#viewpost-container > #comments {
+#viewpost-container > #comments-container {
     grid-area: comments;
-    display: flexbox;
+    display: flex;
     flex-direction: column;
 }
-#comments > header {
+#comments-container > header {
+    flex-grow: 1;
     background-color: #1e2833;
 }
-#comments > #comments-display {
-    display: flexbox;
-    flex-direction: column;
+#comments-container > #comments-display {
+    flex-grow: 20;
+    margin: 3px;
+}
+#comments-container > #comment-box {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+#comment-box > #comment-box-text {
+    flex-grow: 9;
+    margin: 3px;
+}
+#comment-box > #comment-button {
+    flex-grow: 1;
+    margin: 3px;
 }
 
 .center {

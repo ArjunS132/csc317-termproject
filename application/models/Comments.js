@@ -22,7 +22,7 @@ CommentModel.getCommentsForPost = (postId) => {
     JOIN users u
     on u.id=fk_authorId
     WHERE c.fk_postId=?
-    ORDERBY c.createdAt DESC`
+    ORDER BY c.createdAt DESC`
     return db.query(baseSQL, [postId])
     .then( ([results, fields]) => {
         return Promise.resolve(results);
