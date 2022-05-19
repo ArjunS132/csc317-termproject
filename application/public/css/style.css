@@ -30,6 +30,7 @@ footer {
 }
 
 #home-container {
+    grid-area: content;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(2, 1fr);
@@ -138,7 +139,47 @@ footer {
 #comments-container > #comments-display {
     flex-grow: 20;
     margin: 3px;
+    overflow-y: auto;
+    display: flex;
+    flex-flow: column-reverse nowrap;
+    scroll-behavior: smooth;
 }
+
+#comments-display > div[id^=message-] {
+    display: grid;
+    grid-template-rows: .3fr, 1fr;
+    grid-template-columns: 1fr, 1fr;
+    gap: .2em;
+    padding: .25rem;
+    margin: .2rem;
+    font-size: 1rem;
+    color: black;
+    border: .0625rem solid grey;
+    border-radius: .25rem;
+    grid-template-areas: "author createdAt"
+                         "comment comment";
+}
+
+div[id^=message-] > .comment-text {
+    grid-area: comment;
+    justify-self: start;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-height: 60px;
+    min-height: 60px;
+}
+
+div[id^=message-] > .author-text {
+    grid-area: author;
+    color: blue;
+    justify-self: start;
+}
+
+div[id^=message-] > .date-posted {
+    grid-area: createdAt;
+    justify-self: end;
+}
+
 #comments-container > #comment-box {
     width: 100%;
     display: flex;
