@@ -4,8 +4,41 @@ const { errorPrint, successPrint } = require('../helpers/debug/debugprinters');
 const {create} = require('../models/Comments');
 
 router.post('/create', (req, res, next) => {
-    console.log(req.body);
-    res.json("we got your comment");
+    if(!req.session.username) {
+        errorPrint("must be logged in to comment");
+        res.json({
+            code: -1,
+            status: "error",
+            message: "Must be logged in to create a comment"
+        });
+    } else {
+        let {comment, postId} = req.body;
+        let username = req.sesssion.username
+        let userId = req.session.userId
+        create(userId, postId, comment)
+        .then((wasSuccessful) => {
+            if(wasSuccessful != -1) {
+                successPrint(`comment was created for ${username}`);
+                res.json({
+                    code: 1,
+                    status: "success",
+                    message: "comment was created",
+                    comment: comment,
+                    username: username
+                })
+            } else {
+                errorPrint('comment was not saved');
+                res.json({
+                    code: 1,
+                    status: "danger",
+                    message: "comment was not created"
+                })
+            }
+        })
+        .catch((err) => next(err));
+    }
+
+
 })
 
 module.exports = router;
