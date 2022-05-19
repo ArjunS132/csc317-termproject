@@ -36,7 +36,6 @@ router.get('/viewpost', function(req, res, next) {
 });
 
 router.get('/post/:id(\\d+)', getPostById, (req,res,next) => {
-    console.log("some bullshit3");
     res.render('viewpost', { title: `Post ${req.params.id}`});
 });
 

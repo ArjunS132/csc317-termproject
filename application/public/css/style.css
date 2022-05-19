@@ -134,6 +134,11 @@ footer {
 #comments > header {
     background-color: #1e2833;
 }
+#comments > #comments-display {
+    display: flexbox;
+    flex-direction: column;
+}
+
 .center {
     position: absolute;
     top: 50%;
